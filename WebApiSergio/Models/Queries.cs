@@ -13,24 +13,24 @@ namespace WebApiSergio.Models
         {
             using (MySqlConnection MyConexaoDb = new MySqlConnection(ConnectionStringDb.ToString()))
             {
-                using (MySqlCommand cmd = new MySqlCommand("sp_GetCliente", MyConexaoDb))
+                using (MySqlCommand Cmd = new MySqlCommand("sp_GetCliente", MyConexaoDb))
                 {
-                    cmd.CommandType = CommandType.StoredProcedure;
-                    cmd.Parameters.AddWithValue("@clienteid", Id);
+                    Cmd.CommandType = CommandType.StoredProcedure;
+                    Cmd.Parameters.AddWithValue("@clienteid", Id);
                     MyConexaoDb.Open();
 
-                    using (MySqlDataReader dr = cmd.ExecuteReader())
+                    using (MySqlDataReader Dr = Cmd.ExecuteReader())
                     {
                         var ListCliente = new ObservableCollection<Cliente>();
 
-                        while (dr.Read())
+                        while (Dr.Read())
                         {
                             ListCliente.Add
                                 (new Cliente()
                                 {
-                                    id = dr.GetInt32(0),
-                                    Nome = dr.GetString(1),
-                                    Cpf = dr.GetString(2)
+                                    id = Dr.GetInt32(0),
+                                    Nome = Dr.GetString(1),
+                                    Cpf = Dr.GetString(2)
                                 });
                         }
                         return ListCliente;
