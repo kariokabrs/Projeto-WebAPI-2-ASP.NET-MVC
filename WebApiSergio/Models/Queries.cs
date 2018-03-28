@@ -1,42 +1,31 @@
-﻿using System;
-using System.Collections.Generic;
-using MySql.Data.MySqlClient;
+﻿using MySql.Data.MySqlClient;
 using System.Configuration;
 using System.Collections.ObjectModel;
+using System.Data;
 
 namespace WebApiSergio.Models
 {
     public class Queries : Interface1
     {
-        private static string connectionStringDb = ConfigurationManager.ConnectionStrings["smartDb"].ConnectionString;
+        private static string ConnectionStringDb = ConfigurationManager.ConnectionStrings["MyDb"].ConnectionString;
 
         public ObservableCollection<Cliente> ListaClientes(int? Id)
         {
-            using (MySqlConnection smartConexaoDb = new MySqlConnection(connectionStringDb.ToString()))
+            using (MySqlConnection MyConexaoDb = new MySqlConnection(ConnectionStringDb.ToString()))
             {
-                string query;
-                if (Id == null)
+                using (MySqlCommand cmd = new MySqlCommand("sp_GetCliente", MyConexaoDb))
                 {
-                    query = "SELECT id,nome, cpf_cnpj from cliente";
-                }
-                else
-                {
-                    query = "SELECT id,nome, cpf_cnpj from cliente where id=@id";
-                }
-                
-                using (MySqlCommand cmd = new MySqlCommand(query, smartConexaoDb))
-                {
-
-                    cmd.Parameters.AddWithValue("@id", Id);
-                    smartConexaoDb.Open();
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.Parameters.AddWithValue("@clienteid", Id);
+                    MyConexaoDb.Open();
 
                     using (MySqlDataReader dr = cmd.ExecuteReader())
                     {
-                        var listCliente = new ObservableCollection<Cliente>();
+                        var ListCliente = new ObservableCollection<Cliente>();
 
                         while (dr.Read())
                         {
-                            listCliente.Add
+                            ListCliente.Add
                                 (new Cliente()
                                 {
                                     id = dr.GetInt32(0),
@@ -44,7 +33,7 @@ namespace WebApiSergio.Models
                                     Cpf = dr.GetString(2)
                                 });
                         }
-                        return listCliente;
+                        return ListCliente;
                     }
                 }
             }
