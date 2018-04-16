@@ -2,6 +2,7 @@
 using System.Collections.ObjectModel;
 using System.Net;
 using System.Net.Http;
+using System.Threading.Tasks;
 using System.Web.Http;
 using WebApiSergio.Models;
 
@@ -11,26 +12,26 @@ namespace WebApiSergio.Controllers
     {
         Queries query = new Queries();
 
-        // GET: api/Clientes
-        public ObservableCollection<Clientes> Get()
+        // GET: api/Clientes a chamada foi em método Async porque o médoto da classe Queries é Asysnc
+        public async Task<ObservableCollection<Clientes>> GetAsync()
         {
-            var listCliente = query.ListaClientes(null);
+            var listCliente = await query.ListaClientesAsync(null);
             return listCliente;
         }
-        
-        // GET: api/Clientes/5
-        public IHttpActionResult Get(int id)
+
+        // GET: api/Clientes/5 
+        public async Task<IHttpActionResult> GetAsync(int id)
         {
             IHttpActionResult response;
-            //Código para retornar um link eterno caso não haja resultado pelo ID do cliente;
+            //Código para retornar um link etrno caso não haja resultado pelo ID do cliente;
             HttpResponseMessage responseMsg = new HttpResponseMessage(HttpStatusCode.RedirectMethod);
             responseMsg.Headers.Location = new Uri("http://www.microsoft.com");
             response = ResponseMessage(responseMsg);
-       
-            var listCliente = query.ListaClientes(id);
+
+            var listCliente = await query.ListaClientesAsync(id);
             if (listCliente.Count == 0)
             {
-                listCliente = null;
+                return response;
             }
             return Ok(listCliente);
         }

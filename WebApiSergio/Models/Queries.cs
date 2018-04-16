@@ -2,14 +2,15 @@
 using System.Configuration;
 using System.Collections.ObjectModel;
 using System.Data;
+using System.Threading.Tasks;
 
 namespace WebApiSergio.Models
 {
     public class Queries : Interface1
     {
         private static string ConnectionStringDb = ConfigurationManager.ConnectionStrings["MyDb"].ConnectionString;
-
-        public ObservableCollection<Clientes> ListaClientes(int? Id)
+        //Se o método é Async a chamada também tem que ser
+        public Task<ObservableCollection<Clientes>> ListaClientesAsync(int? Id)
         {
             using (MySqlConnection MyConexaoDb = new MySqlConnection(ConnectionStringDb.ToString()))
             {
@@ -36,7 +37,7 @@ namespace WebApiSergio.Models
                                 });
                             }
                         }
-                        return ListCliente;
+                        return Task.Run(() => ListCliente);
                     }
                 }
             }
