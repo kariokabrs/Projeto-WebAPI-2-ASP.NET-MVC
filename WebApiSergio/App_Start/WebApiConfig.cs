@@ -1,4 +1,5 @@
-﻿using System.Web.Http;
+﻿using System.Net.Http.Headers;
+using System.Web.Http;
 
 namespace WebApiSergio
 {
@@ -16,8 +17,19 @@ namespace WebApiSergio
                 routeTemplate: "api/{controller}/{id}",
                 defaults: new { id = RouteParameter.Optional }
             );
+            //1 forma Para que saia o formato do Json na respota da WebAPI como padrão mas sem Indent.
+            //config.Formatters.JsonFormatter.SupportedMediaTypes.Add(new MediaTypeHeaderValue("text/html"));
+
+            //2 forma Para que saia o formato do Json na respota da WebAPI como padrão.
             config.Formatters.Remove(config.Formatters.XmlFormatter);
+
+            //Aqui para formatar o Json em Linhas com Indent.
             config.Formatters.JsonFormatter.Indent = true;
+
+            //3 forma sem uso do Json.NET
+            //var json = GlobalConfiguration.Configuration.Formatters.JsonFormatter;
+            //json.UseDataContractJsonSerializer = true;
+            //json.SerializerSettings.Formatting = Newtonsoft.Json.Formatting.Indented;
         }
     }
 }

@@ -9,7 +9,7 @@ namespace WebApiSergio.Models
     {
         private static string ConnectionStringDb = ConfigurationManager.ConnectionStrings["MyDb"].ConnectionString;
 
-        public ObservableCollection<Cliente> ListaClientes(int? Id)
+        public ObservableCollection<Clientes> ListaClientes(int? Id)
         {
             using (MySqlConnection MyConexaoDb = new MySqlConnection(ConnectionStringDb.ToString()))
             {
@@ -19,19 +19,22 @@ namespace WebApiSergio.Models
                     Cmd.Parameters.AddWithValue("@clienteid", Id);
                     MyConexaoDb.Open();
 
-                    using (MySqlDataReader Dr = Cmd.ExecuteReader())
+                    using (MySqlDataReader dr = Cmd.ExecuteReader())
                     {
-                        var ListCliente = new ObservableCollection<Cliente>();
+                        var ListCliente = new ObservableCollection<Clientes>();
 
-                        while (Dr.Read())
+                        while (dr.Read())
                         {
-                            ListCliente.Add
-                                (new Cliente()
+                            if (!(dr.IsDBNull(0)))
+                            {
+                                ListCliente.Add
+                                (new Clientes()
                                 {
-                                    id = Dr.GetInt32(0),
-                                    Nome = Dr.GetString(1),
-                                    Cpf = Dr.GetString(2)
+                                    Id = dr.GetInt32(0),
+                                    Nome = dr.GetString(1),
+                                    Cpf = dr.GetString(2)
                                 });
+                            }
                         }
                         return ListCliente;
                     }
