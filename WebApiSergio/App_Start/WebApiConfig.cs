@@ -30,6 +30,10 @@ namespace WebApiSergio
             //var json = GlobalConfiguration.Configuration.Formatters.JsonFormatter;
             //json.UseDataContractJsonSerializer = true;
             //json.SerializerSettings.Formatting = Newtonsoft.Json.Formatting.Indented;
+
+            // Converte todas as datas para UTC
+            var json = GlobalConfiguration.Configuration.Formatters.JsonFormatter;
+            json.SerializerSettings.DateTimeZoneHandling = Newtonsoft.Json.DateTimeZoneHandling.Utc;
         }
     }
 }
