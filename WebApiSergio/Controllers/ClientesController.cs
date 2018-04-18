@@ -68,11 +68,11 @@ namespace WebApiSergio.Controllers
         }           
 
         // PUT(Update): api/Clientes/5
-        public IHttpActionResult Put([FromBody]Clientes value)
+        public IHttpActionResult Put(int id,[FromBody]Clientes value)
         {
             try
             {
-                query.AtualizarCliente(value.Id,value.Nome, value.Cpf);
+                query.AtualizarCliente(id,value.Nome, value.Cpf);
             }
 
             catch (Exception)
