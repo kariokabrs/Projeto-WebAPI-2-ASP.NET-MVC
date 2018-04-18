@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.ObjectModel;
 using System.Net;
 using System.Net.Http;
@@ -43,25 +44,59 @@ namespace WebApiSergio.Controllers
 
                 //Aqui retona um formato de Texto baseado na Classe TextResult
                 return new TextResult("hello", Request);
-
-
             }
-            return Ok(listCliente);
+            else
+            {
+                return Ok(listCliente);
+            }
         }
 
-        // POST: api/Clientes
-        public void Post([FromBody]string value)
+        // POST(Insert): api/Clientes
+        public IHttpActionResult Post([FromBody]Clientes value)
         {
-        }
+            try
+            {
+                query.InserirCliente(value.Nome, value.Cpf);
+            }
 
-        // PUT: api/Clientes/5
-        public void Put(int id, [FromBody]string value)
+            catch (Exception)
+            {
+
+                throw;
+            }
+            return Ok();
+        }           
+
+        // PUT(Update): api/Clientes/5
+        public IHttpActionResult Put([FromBody]Clientes value)
         {
+            try
+            {
+                query.AtualizarCliente(value.Id,value.Nome, value.Cpf);
+            }
+
+            catch (Exception)
+            {
+
+                throw;
+            }
+            return Ok();
         }
 
         // DELETE: api/Clientes/5
-        public void Delete(int id)
+        public IHttpActionResult Delete(int id)
         {
+            try 
+            {
+                query.DeletarCliente(id);
+            }
+
+            catch (Exception)
+            {
+
+                throw;
+            }
+            return Ok();
         }
     }
- }
+}
