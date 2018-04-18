@@ -2,8 +2,10 @@
 using System.Collections.ObjectModel;
 using System.Net;
 using System.Net.Http;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Web.Http;
+using WebApiSergio.Classes;
 using WebApiSergio.Models;
 
 namespace WebApiSergio.Controllers
@@ -23,15 +25,27 @@ namespace WebApiSergio.Controllers
         public async Task<IHttpActionResult> GetAsync(int id)
         {
             IHttpActionResult response;
-            //Código para retornar um link etrno caso não haja resultado pelo ID do cliente;
+            //Código para retornar um link de retono caso não haja resultado pelo ID do cliente;
             HttpResponseMessage responseMsg = new HttpResponseMessage(HttpStatusCode.RedirectMethod);
-            responseMsg.Headers.Location = new Uri("http://www.microsoft.com");
+            responseMsg.Headers.Location = new Uri("http://www.alphaebetacom.wordpress.com");
             response = ResponseMessage(responseMsg);
 
             var listCliente = await query.ListaClientesAsync(id);
             if (listCliente.Count == 0)
             {
-                return response;
+                //Aqui retorna um direcionamento de página.
+                //return response;
+
+                //Aqui mostra caso o banco de dados não tenha resultado a palavra null em JSON;
+                //return listCliente = null;
+
+                //Aqui retorno um erro 404
+                //return NotFound();
+
+                //Aqui retona um formato de Texto baseado na Classe TextResult
+                return new TextResult("hello", Request);
+
+
             }
             return Ok(listCliente);
         }
@@ -50,7 +64,5 @@ namespace WebApiSergio.Controllers
         public void Delete(int id)
         {
         }
-
-
     }
-}
+ }

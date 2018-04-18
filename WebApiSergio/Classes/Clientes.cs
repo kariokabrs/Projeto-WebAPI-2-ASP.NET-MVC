@@ -8,7 +8,7 @@ using System.Web;
 namespace WebApiSergio
 {
     //Para usar o DataContract tem que referenciar a DLL System.Runtime.Serialization no projeto!!
-    //DataContract aqui diz que o posso determinar que apareça como respota a webapi no formato Json. Ou seja quais as propriodades apareceram e para isso , basta colocar um [DataMeber] acima de cada propriedade que quer que apareça. Caso não coloque, a propriedade não será chamada. 
+    //DataContract aqui diz que o posso determinar que apareça como respota a webapi no formato Json. Ou seja quais as propriedades apareceram e para isso , basta colocar um [DataMeber] acima de cada propriedade que quer que apareça. Caso não coloque, a propriedade não será chamada. 
 
     [DataContract(Name = "Clientes", Namespace = "http:/alphabetacom.wordpres.com")]
     public class Clientes

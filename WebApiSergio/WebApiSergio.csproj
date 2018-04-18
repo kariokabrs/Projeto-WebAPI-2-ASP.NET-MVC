@@ -177,12 +177,13 @@
   <ItemGroup>
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Classes\Clientes.cs" />
+    <Compile Include="Classes\TextResult.cs" />
     <Compile Include="Controllers\ClientesController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\Interface1.cs" />
-    <Compile Include="Models\Queries.cs" />
+    <Compile Include="Classes\Queries.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
