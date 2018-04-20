@@ -44,7 +44,6 @@ namespace WebApiSergio.Models
                         }
                         return ListCliente;
                     }
-
                 }
             }
         }
