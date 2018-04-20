@@ -23,7 +23,7 @@ namespace WebApiSergio.Models
                     Cmd.Parameters.AddWithValue("@clienteid", Id);
                     await MyConexaoDb.OpenAsync();
 
-                    //Neste caso MySQL tem um bug para o método Asyncrono ExecuteReader mesmo no connectro versão 8.0
+                    //Neste caso MySQL tem um bug para o método Asyncrono ExecuteReader mesmo no connector versão 8.0
                     // using (MySqlDataReader dr = await Cmd.ExecuteReaderAsync())
                     using (MySqlDataReader dr = Cmd.ExecuteReader())
                     {
