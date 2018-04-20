@@ -37,29 +37,35 @@ namespace WebApiSergio.Controllers
             HttpResponseMessage responseMsg = new HttpResponseMessage(HttpStatusCode.RedirectMethod);
             responseMsg.Headers.Location = new Uri("http://www.alphaebetacom.wordpress.com");
             response = ResponseMessage(responseMsg);
-
-            var listCliente = await query.ListaClientesAsync(id);
-            if (listCliente.Count == 0)
+            try
             {
-                //Aqui retorna um direcionamento de página.
-                //return response;
+                var listCliente = await query.ListaClientesAsync(id);
+                if (listCliente.Count == 0)
+                {
+                    //Aqui retorna um direcionamento de página.
+                    //return response;
 
-                //Aqui mostra caso o banco de dados não tenha resultado a palavra null em JSON;
-                //return listCliente = null;
+                    //Aqui mostra caso o banco de dados não tenha resultado a palavra null em JSON;
+                    //return listCliente = null;
 
-                //Aqui retorno um erro 404
-                //return NotFound();
+                    //Aqui retorno um erro 404
+                    //return NotFound();
 
-                //Aqui retona um formato de Texto baseado na Classe TextResult
-                return new TextResult("hello", Request);
+                    //Aqui retona um formato de Texto baseado na Classe TextResult
+                    return new TextResult("hello", Request);
+                }
+                else
+                {
+                    return Ok(listCliente);
+                }
             }
-            else
+            catch (Exception)
             {
-                return Ok(listCliente);
+                throw;
             }
         }
         [HttpPost]
-       // POST(Insert): api/Clientes
+        // POST(Insert): api/Clientes
         public async Task<IHttpActionResult> PostAync([FromBody]Clientes value)
         {
             try
@@ -76,11 +82,11 @@ namespace WebApiSergio.Controllers
         }
 
         // PUT(Update): api/Clientes/5
-        public async Task<IHttpActionResult> PutAsync(int id,[FromBody]Clientes value)
+        public async Task<IHttpActionResult> PutAsync(int id, [FromBody]Clientes value)
         {
             try
             {
-                await query.AtualizarClienteAsync(id,value.Nome, value.Cpf);
+                await query.AtualizarClienteAsync(id, value.Nome, value.Cpf);
             }
             catch (Exception)
             {
@@ -92,7 +98,7 @@ namespace WebApiSergio.Controllers
         // DELETE: api/Clientes/5
         public async Task<IHttpActionResult> DeleteAsync(int id)
         {
-            try 
+            try
             {
                 await query.DeletarClienteAsync(id);
             }
