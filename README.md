@@ -1,4 +1,4 @@
-# ASP.NET WebAPI REST C# #
+# ASP.NET MVC WebAPI REST C# #
 
 ## Um sample de criação de uma WebAPI REST usando ASP.NET MVC ##
 
