@@ -1,6 +1,6 @@
 # ASP.NET WebAPI REST C# #
 
-## Um sample de criação de uma WebAPI REST usando ASP.NET  ##
+## Um sample de criação de uma WebAPI REST usando ASP.NET MVC ##
 
 * Uso da Linguagem C#;
 * Uso do Visual Studio 2015; 
