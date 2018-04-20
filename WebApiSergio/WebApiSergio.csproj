@@ -84,22 +84,9 @@
       <HintPath>..\packages\Microsoft.Web.Infrastructure.1.0.0.0\lib\net40\Microsoft.Web.Infrastructure.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="MySql.Data, Version=6.9.9.0, Culture=neutral, PublicKeyToken=c5687fc88969c44d, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\..\..\..\..\Program Files (x86)\MySQL\Connector.NET 6.9\Assemblies\v4.5\MySql.Data.dll</HintPath>
-    </Reference>
-    <Reference Include="MySql.Data.Entity.EF6, Version=6.9.9.0, Culture=neutral, PublicKeyToken=c5687fc88969c44d, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\..\..\..\..\Program Files (x86)\MySQL\Connector.NET 6.9\Assemblies\v4.5\MySql.Data.Entity.EF6.dll</HintPath>
-    </Reference>
-    <Reference Include="MySql.Fabric.Plugin, Version=6.9.9.0, Culture=neutral, PublicKeyToken=c5687fc88969c44d, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\..\..\..\..\Program Files (x86)\MySQL\Connector.NET 6.9\Assemblies\v4.5\MySql.Fabric.Plugin.dll</HintPath>
-    </Reference>
-    <Reference Include="MySql.Web, Version=6.9.9.0, Culture=neutral, PublicKeyToken=c5687fc88969c44d, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\..\..\..\..\Program Files (x86)\MySQL\Connector.NET 6.9\Assemblies\v4.5\MySql.Web.dll</HintPath>
-    </Reference>
+    <Reference Include="MySql.Data, Version=8.0.11.0, Culture=neutral, PublicKeyToken=c5687fc88969c44d, processorArchitecture=MSIL" />
+    <Reference Include="MySql.Data.EntityFramework, Version=8.0.11.0, Culture=neutral, PublicKeyToken=c5687fc88969c44d, processorArchitecture=MSIL" />
+    <Reference Include="MySql.Web, Version=8.0.11.0, Culture=neutral, PublicKeyToken=c5687fc88969c44d, processorArchitecture=MSIL" />
     <Reference Include="System.Net.Http" />
     <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.ServiceModel" />

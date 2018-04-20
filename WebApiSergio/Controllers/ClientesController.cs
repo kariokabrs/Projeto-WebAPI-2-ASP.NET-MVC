@@ -15,6 +15,7 @@ namespace WebApiSergio.Controllers
         Queries query = new Queries();
 
         // GET: api/Clientes a chamada foi em método Async porque o médoto da classe Queries é Asysnc
+        [HttpGet]
         public async Task<ObservableCollection<Clientes>> GetAsync()
         {
             var listCliente = await query.ListaClientesAsync(null);
@@ -50,29 +51,14 @@ namespace WebApiSergio.Controllers
                 return Ok(listCliente);
             }
         }
-
-        // POST(Insert): api/Clientes
-        public IHttpActionResult Post([FromBody]Clientes value)
+        [HttpPost]
+       // POST(Insert): api/Clientes
+        public async Task<IHttpActionResult> PostAync([FromBody]Clientes value)
         {
             try
             {
-                query.InserirCliente(value.Nome, value.Cpf);
-            }
-
-            catch (Exception)
-            {
-
-                throw;
-            }
-            return Ok();
-        }           
-
-        // PUT(Update): api/Clientes/5
-        public IHttpActionResult Put(int id,[FromBody]Clientes value)
-        {
-            try
-            {
-                query.AtualizarCliente(id,value.Nome, value.Cpf);
+                await query.InserirClienteAsync(value.Nome, value.Cpf);
+                //Task.Run(() => query.InserirClienteAsync(value.Nome, value.Cpf));
             }
 
             catch (Exception)
@@ -83,14 +69,28 @@ namespace WebApiSergio.Controllers
             return Ok();
         }
 
+        // PUT(Update): api/Clientes/5
+        public async Task<IHttpActionResult> PutAsync(int id,[FromBody]Clientes value)
+        {
+            try
+            {
+                await query.AtualizarClienteAsync(id,value.Nome, value.Cpf);
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+            return Ok();
+        }
+
         // DELETE: api/Clientes/5
-        public IHttpActionResult Delete(int id)
+        public async Task<IHttpActionResult> DeleteAsync(int id)
         {
             try 
             {
-                query.DeletarCliente(id);
+                await query.DeletarClienteAsync(id);
             }
-
             catch (Exception)
             {
 

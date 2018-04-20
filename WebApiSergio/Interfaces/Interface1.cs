@@ -14,11 +14,11 @@ namespace WebApiSergio.Models
         [OperationContract]
         Task<ObservableCollection<Clientes>> ListaClientesAsync(int? Id);
         [OperationContract]
-        string InserirCliente(string nome, string cpf_cnpj);
+        Task InserirClienteAsync(string nome, string cpf_cnpj);
         [OperationContract]
-        string AtualizarCliente(int clienteid, string nome, string cpf_cnpj);
+        Task AtualizarClienteAsync(int clienteid, string nome, string cpf_cnpj);
         [OperationContract]
-        string DeletarCliente(int clienteid);
+        Task DeletarClienteAsync(int clienteid);
     }
 
 }

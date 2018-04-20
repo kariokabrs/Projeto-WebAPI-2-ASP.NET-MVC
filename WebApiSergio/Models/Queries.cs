@@ -13,7 +13,7 @@ namespace WebApiSergio.Models
         //Se o método é Async a chamada também tem que ser
 
         //GET e GET(id) (Select)
-        public Task<ObservableCollection<Clientes>> ListaClientesAsync(int? Id)
+        public async Task<ObservableCollection<Clientes>> ListaClientesAsync(int? Id)
         {
             using (MySqlConnection MyConexaoDb = new MySqlConnection(ConnectionStringDb))
             {
@@ -21,13 +21,15 @@ namespace WebApiSergio.Models
                 {
                     Cmd.CommandType = CommandType.StoredProcedure;
                     Cmd.Parameters.AddWithValue("@clienteid", Id);
-                    MyConexaoDb.Open();
+                    await MyConexaoDb.OpenAsync();
 
+                    //Neste caso MySQL tem um bug para o método Asyncrono ExecuteReader mesmo no connectro versão 8.0
+                    // using (MySqlDataReader dr = await Cmd.ExecuteReaderAsync())
                     using (MySqlDataReader dr = Cmd.ExecuteReader())
                     {
                         var ListCliente = new ObservableCollection<Clientes>();
 
-                        while (dr.Read())
+                        while (await dr.ReadAsync())
                         {
                             if (!(dr.IsDBNull(0)))
                             {
@@ -40,14 +42,15 @@ namespace WebApiSergio.Models
                                 });
                             }
                         }
-                        return Task.Run(() => ListCliente);
+                        return ListCliente;
                     }
+
                 }
             }
         }
-
+        //Método completamente asyncronous desde o Open até o Execute. 
         //Post (Insert)
-        public string InserirCliente(string nome, string cpf_cnpj)
+        public async Task InserirClienteAsync(string nome, string cpf_cnpj)
         {
             using (MySqlConnection smartConexaoDb = new MySqlConnection(ConnectionStringDb))
             {
@@ -56,32 +59,22 @@ namespace WebApiSergio.Models
                     Cmd.CommandType = CommandType.StoredProcedure;
                     Cmd.Parameters.AddWithValue("@_nome", nome);
                     Cmd.Parameters.AddWithValue("@_cpf_cnpj", cpf_cnpj);
-                   
+
                     try
                     {
-                        smartConexaoDb.Open();
-
-                        int atualizado = Cmd.ExecuteNonQuery();
-
-                        if (atualizado == 0)
-                        {
-                            return "Dado não foi lançado!";
-                        }
-                        else
-                        {
-                            return "Dado lançado!";
-                        }
+                        await smartConexaoDb.OpenAsync();
+                        await Cmd.ExecuteNonQueryAsync();
                     }
-                    catch (MySqlException ex)
+                    catch (MySqlException)
                     {
-                        return ("Erro para inserir novo dado" + Environment.NewLine + ex.Message);
+                        throw;
                     }
                 }
             }
         }
 
         //PUT (Update)
-        public string AtualizarCliente(int clienteid,string nome, string cpf_cnpj)
+        public async Task AtualizarClienteAsync(int clienteid, string nome, string cpf_cnpj)
         {
             using (MySqlConnection smartConexaoDb = new MySqlConnection(ConnectionStringDb))
             {
@@ -94,29 +87,30 @@ namespace WebApiSergio.Models
 
                     try
                     {
-                        smartConexaoDb.Open();
+                        await smartConexaoDb.OpenAsync();
+                        await Cmd.ExecuteNonQueryAsync();
 
-                        int atualizado = Cmd.ExecuteNonQuery();
+                        //int atualizado = await Cmd.ExecuteNonQueryAsync();
 
-                        if (atualizado == 0)
-                        {
-                            return "Dado não foi atualizado!";
-                        }
-                        else
-                        {
-                            return "Dado atualizado!";
-                        }
+                        //if (atualizado == 0)
+                        //{
+                        //    return "Dado não foi atualizado!";
+                        //}
+                        //else
+                        //{
+                        //    return "Dado atualizado!";
+                        //}
                     }
-                    catch (MySqlException ex)
+                    catch (MySqlException)
                     {
-                        return ("Erro para atualizar o dado" + Environment.NewLine + ex.Message);
+                        throw;
                     }
                 }
             }
         }
 
         //Delete (Delete)
-        public string  DeletarCliente(int clienteid)
+        public async Task DeletarClienteAsync(int clienteid)
         {
             using (MySqlConnection smartConexaoDb = new MySqlConnection(ConnectionStringDb))
             {
@@ -124,25 +118,15 @@ namespace WebApiSergio.Models
                 {
                     Cmd.CommandType = CommandType.StoredProcedure;
                     Cmd.Parameters.AddWithValue("@clienteid", clienteid);
-                    
+
                     try
                     {
-                        smartConexaoDb.Open();
-
-                        int atualizado = Cmd.ExecuteNonQuery();
-
-                        if (atualizado == 0)
-                        {
-                            return "Dado não foi deletado!";
-                        }
-                        else
-                        {
-                            return "Dado deletado!";
-                        }
+                        await smartConexaoDb.OpenAsync();
+                        await Cmd.ExecuteNonQueryAsync();
                     }
-                    catch (MySqlException ex)
+                    catch (MySqlException)
                     {
-                        return ("Erro para deletar o dado" + Environment.NewLine + ex.Message);
+                        throw;
                     }
                 }
             }
