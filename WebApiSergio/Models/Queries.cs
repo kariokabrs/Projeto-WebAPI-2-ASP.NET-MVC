@@ -21,7 +21,8 @@ namespace WebApiSergio.Models
                 {
                     Cmd.CommandType = CommandType.StoredProcedure;
                     Cmd.Parameters.AddWithValue("@clienteid", Id);
-                    await MyConexaoDb.OpenAsync();
+
+                        await MyConexaoDb.OpenAsync();
 
                     //Neste caso MySQL tem um bug para o método Asyncrono ExecuteReader mesmo no connector versão 8.0
                     // using (MySqlDataReader dr = await Cmd.ExecuteReaderAsync())
@@ -42,6 +43,7 @@ namespace WebApiSergio.Models
                                 });
                             }
                         }
+
                         return ListCliente;
                     }
                 }
@@ -59,15 +61,9 @@ namespace WebApiSergio.Models
                     Cmd.Parameters.AddWithValue("@_nome", nome);
                     Cmd.Parameters.AddWithValue("@_cpf_cnpj", cpf_cnpj);
 
-                    try
-                    {
-                        await smartConexaoDb.OpenAsync();
-                        await Cmd.ExecuteNonQueryAsync();
-                    }
-                    catch (MySqlException)
-                    {
-                        throw;
-                    }
+                    await smartConexaoDb.OpenAsync();
+                    await Cmd.ExecuteNonQueryAsync();
+
                 }
             }
         }
@@ -84,26 +80,20 @@ namespace WebApiSergio.Models
                     Cmd.Parameters.AddWithValue("@_nome", nome);
                     Cmd.Parameters.AddWithValue("@_cpf_cnpj", cpf_cnpj);
 
-                    try
-                    {
-                        await smartConexaoDb.OpenAsync();
-                        await Cmd.ExecuteNonQueryAsync();
+                    await smartConexaoDb.OpenAsync();
+                    await Cmd.ExecuteNonQueryAsync();
 
-                        //int atualizado = await Cmd.ExecuteNonQueryAsync();
+                    //int atualizado = await Cmd.ExecuteNonQueryAsync();
 
-                        //if (atualizado == 0)
-                        //{
-                        //    return "Dado não foi atualizado!";
-                        //}
-                        //else
-                        //{
-                        //    return "Dado atualizado!";
-                        //}
-                    }
-                    catch (MySqlException)
-                    {
-                        throw;
-                    }
+                    //if (atualizado == 0)
+                    //{
+                    //    return "Dado não foi atualizado!";
+                    //}
+                    //else
+                    //{
+                    //    return "Dado atualizado!";
+                    //}
+
                 }
             }
         }
@@ -118,15 +108,9 @@ namespace WebApiSergio.Models
                     Cmd.CommandType = CommandType.StoredProcedure;
                     Cmd.Parameters.AddWithValue("@clienteid", clienteid);
 
-                    try
-                    {
-                        await smartConexaoDb.OpenAsync();
-                        await Cmd.ExecuteNonQueryAsync();
-                    }
-                    catch (MySqlException)
-                    {
-                        throw;
-                    }
+                    await smartConexaoDb.OpenAsync();
+                    await Cmd.ExecuteNonQueryAsync();
+
                 }
             }
         }

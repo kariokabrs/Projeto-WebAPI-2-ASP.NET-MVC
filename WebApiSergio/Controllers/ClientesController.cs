@@ -18,8 +18,15 @@ namespace WebApiSergio.Controllers
         [HttpGet]
         public async Task<ObservableCollection<Clientes>> GetAsync()
         {
-            var listCliente = await query.ListaClientesAsync(null);
-            return listCliente;
+            try
+            {
+                var listCliente = await query.ListaClientesAsync(null);
+                return listCliente;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
         }
 
         // GET: api/Clientes/5 
@@ -63,7 +70,6 @@ namespace WebApiSergio.Controllers
 
             catch (Exception)
             {
-
                 throw;
             }
             return Ok();
@@ -78,7 +84,6 @@ namespace WebApiSergio.Controllers
             }
             catch (Exception)
             {
-
                 throw;
             }
             return Ok();
@@ -93,7 +98,6 @@ namespace WebApiSergio.Controllers
             }
             catch (Exception)
             {
-
                 throw;
             }
             return Ok();
