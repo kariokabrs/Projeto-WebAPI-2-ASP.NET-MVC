@@ -23,9 +23,9 @@ namespace WebApiSergio.Controllers
                 var listCliente = await query.ListaClientesAsync(null);
                 return listCliente;
             }
-            catch (Exception ex)
+            catch (Exception)
             {
-                throw ex;
+                throw;
             }
         }
 
