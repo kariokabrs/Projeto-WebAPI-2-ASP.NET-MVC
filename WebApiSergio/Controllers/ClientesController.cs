@@ -11,13 +11,15 @@ using WebApiSergio.Models;
 namespace WebApiSergio.Controllers
 {
     /// <summary>
-    /// WebAPI para CRUD da tabela Clientes do MySQL.
+    /// WebAPIsergio para CRUD da tabela Clientes do MySQL.
     /// </summary>
     public class ClientesController : ApiController
     {
         Queries query = new Queries();
-        //Os 3 /// abaixo é que gera a documentação XML para mostrar na página de HELP desta WebAPI que contém as intruções , classes e verbos disponíveis para esta WebAPI como sua documentação básica
+        //Os 3 /// <summary>   /// </summary>abaixo é que gera a documentação XML para mostrar na página de HELP desta WebAPI que contém as intruções , classes e verbos disponíveis para esta WebAPI como sua documentação básica.
+        /// <summary>
         /// GET: api/Clientes a chamada foi em método Async porque o médoto da classe Queries é Asysnc
+        /// </summary>
         [HttpGet]
         public async Task<ObservableCollection<Clientes>> GetAsync()
         {
@@ -31,9 +33,11 @@ namespace WebApiSergio.Controllers
                 throw;
             }
         }
-       
-        /// GET: api/Clientes/ pelo id do cliente
-        public async Task<IHttpActionResult> GetAsync(int id)
+        /// <summary>
+        /// GET: api/Clientes/id a chamada foi em método Async porque o médoto da classe Queries é Asysnc
+        /// </summary>
+        //// <param name="id">O ID do Cliente.</param>
+          public async Task<IHttpActionResult> GetAsync(int id)
         {
             IHttpActionResult response;
             //Código para retornar um link de retono caso não haja resultado pelo ID do cliente;
@@ -67,8 +71,8 @@ namespace WebApiSergio.Controllers
                 throw;
             }
         }
-        [HttpPost]
         /// POST(Insert): api/Clientes
+        [HttpPost]
         public async Task<IHttpActionResult> PostAync([FromBody]Clientes value)
         {
             try
@@ -98,7 +102,7 @@ namespace WebApiSergio.Controllers
             return Ok();
         }
 
-        // DELETE: api/Clientes/5
+        /// DELETE: api/Clientes/5
         public async Task<IHttpActionResult> DeleteAsync(int id)
         {
             try

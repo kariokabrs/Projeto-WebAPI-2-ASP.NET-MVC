@@ -4,6 +4,11 @@
         <name>WebApiSergio</name>
     </assembly>
     <members>
+        <member name="T:WebApiSergio.Areas.HelpPage.ApiDescriptionExtensions">
+            <summary>
+            Página HELP da WebAPI
+            </summary>
+        </member>
         <member name="M:WebApiSergio.Areas.HelpPage.ApiDescriptionExtensions.GetFriendlyId(System.Web.Http.Description.ApiDescription)">
             <summary>
             Generates an URI-friendly ID for the <see cref="T:System.Web.Http.Description.ApiDescription"/>. E.g. "Get-Values-id_name" instead of "GetValues/{id}?name={name}"
@@ -480,6 +485,30 @@
             Initializes a new instance of the <see cref="T:WebApiSergio.Areas.HelpPage.XmlDocumentationProvider"/> class.
             </summary>
             <param name="documentPath">The physical path to XML document.</param>
+        </member>
+        <member name="T:WebApiSergio.Controllers.ClientesController">
+            <summary>
+            WebAPIsergio para CRUD da tabela Clientes do MySQL.
+            </summary>
+        </member>
+        <member name="M:WebApiSergio.Controllers.ClientesController.GetAsync">
+            <summary>
+            GET: api/Clientes a chamada foi em método Async porque o médoto da classe Queries é Asysnc
+            </summary>
+        </member>
+        <member name="M:WebApiSergio.Controllers.ClientesController.GetAsync(System.Int32)">
+            <summary>
+            GET: api/Clientes/id a chamada foi em método Async porque o médoto da classe Queries é Asysnc
+            </summary>
+        </member>
+        <member name="M:WebApiSergio.Controllers.ClientesController.PostAync(WebApiSergio.Clientes)">
+            POST(Insert): api/Clientes
+        </member>
+        <member name="M:WebApiSergio.Controllers.ClientesController.PutAsync(System.Int32,WebApiSergio.Clientes)">
+            PUT(Update): api/Clientes/5
+        </member>
+        <member name="M:WebApiSergio.Controllers.ClientesController.DeleteAsync(System.Int32)">
+            DELETE: api/Clientes/5
         </member>
     </members>
 </doc>
