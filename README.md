@@ -7,3 +7,4 @@
 * Uso do banco de dados MySQL;
 * Uso de StoreProcedures no MySql;
 * Uso de chamadas Async Task em todos os métodos e verbos.
+* Uso de HelpPages para criar link /help na URI para documentação em XML do projeto para uso de um cliente. 
