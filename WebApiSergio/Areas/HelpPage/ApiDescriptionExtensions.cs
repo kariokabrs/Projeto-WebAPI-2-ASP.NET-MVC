@@ -5,6 +5,9 @@ using System.Web.Http.Description;
 
 namespace WebApiSergio.Areas.HelpPage
 {
+    /// <summary>
+    /// Página HELP da WebAPI
+    /// </summary>
     public static class ApiDescriptionExtensions
     {
         /// <summary>

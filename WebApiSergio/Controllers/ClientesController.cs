@@ -10,11 +10,14 @@ using WebApiSergio.Models;
 
 namespace WebApiSergio.Controllers
 {
+    /// <summary>
+    /// WebAPI para CRUD da tabela Clientes do MySQL.
+    /// </summary>
     public class ClientesController : ApiController
     {
         Queries query = new Queries();
-
-        // GET: api/Clientes a chamada foi em método Async porque o médoto da classe Queries é Asysnc
+        //Os 3 /// abaixo é que gera a documentação XML para mostrar na página de HELP desta WebAPI que contém as intruções , classes e verbos disponíveis para esta WebAPI como sua documentação básica
+        /// GET: api/Clientes a chamada foi em método Async porque o médoto da classe Queries é Asysnc
         [HttpGet]
         public async Task<ObservableCollection<Clientes>> GetAsync()
         {
@@ -28,8 +31,8 @@ namespace WebApiSergio.Controllers
                 throw;
             }
         }
-
-        // GET: api/Clientes/5 
+       
+        /// GET: api/Clientes/ pelo id do cliente
         public async Task<IHttpActionResult> GetAsync(int id)
         {
             IHttpActionResult response;
@@ -65,7 +68,7 @@ namespace WebApiSergio.Controllers
             }
         }
         [HttpPost]
-        // POST(Insert): api/Clientes
+        /// POST(Insert): api/Clientes
         public async Task<IHttpActionResult> PostAync([FromBody]Clientes value)
         {
             try
@@ -81,7 +84,7 @@ namespace WebApiSergio.Controllers
             return Ok();
         }
 
-        // PUT(Update): api/Clientes/5
+        /// PUT(Update): api/Clientes/5
         public async Task<IHttpActionResult> PutAsync(int id, [FromBody]Clientes value)
         {
             try
