@@ -5,6 +5,7 @@ using System.Net;
 using System.Net.Http;
 using System.Threading.Tasks;
 using System.Web.Http;
+using System.Web.Http.Description;
 using WebApiSergio.Classes;
 using WebApiSergio.Models;
 
@@ -20,6 +21,8 @@ namespace WebApiSergio.Controllers
         /// <summary>
         /// GET: api/Clientes a chamada foi em método Async porque o médoto da classe Queries é Asysnc
         /// </summary>
+        //Este comando abaixo retira o método GET da página HELP apenas mas o mesmo continua a funcionar. 
+        [ApiExplorerSettings(IgnoreApi=true)]
         [HttpGet]
         public async Task<ObservableCollection<Clientes>> GetAsync()
         {
