@@ -7,12 +7,15 @@ using System;
 
 namespace WebApiSergio.Models
 {
+    /// <summary>
+    /// Services
+    /// </summary>
     public class Queries : Interface1
     {
         private static string ConnectionStringDb = ConfigurationManager.ConnectionStrings["MyDb"].ConnectionString;
         //Se o método é Async a chamada também tem que ser
 
-        //GET e GET(id) (Select)
+        ///GET e GET(id) (Select)
         public async Task<ObservableCollection<Clientes>> ListaClientesAsync(int? Id)
         {
             using (MySqlConnection MyConexaoDb = new MySqlConnection(ConnectionStringDb))
@@ -49,8 +52,8 @@ namespace WebApiSergio.Models
                 }
             }
         }
-        //Método completamente asyncronous desde o Open até o Execute. 
-        //Post (Insert)
+        ///Método completamente asyncronous desde o Open até o Execute. 
+        ///Post (Insert)
         public async Task InserirClienteAsync(string nome, string cpf_cnpj)
         {
             using (MySqlConnection smartConexaoDb = new MySqlConnection(ConnectionStringDb))
@@ -68,7 +71,7 @@ namespace WebApiSergio.Models
             }
         }
 
-        //PUT (Update)
+        ///PUT (Update)
         public async Task AtualizarClienteAsync(int clienteid, string nome, string cpf_cnpj)
         {
             using (MySqlConnection smartConexaoDb = new MySqlConnection(ConnectionStringDb))
@@ -98,7 +101,7 @@ namespace WebApiSergio.Models
             }
         }
 
-        //Delete (Delete)
+        ///Delete (Delete)
         public async Task DeletarClienteAsync(int clienteid)
         {
             using (MySqlConnection smartConexaoDb = new MySqlConnection(ConnectionStringDb))

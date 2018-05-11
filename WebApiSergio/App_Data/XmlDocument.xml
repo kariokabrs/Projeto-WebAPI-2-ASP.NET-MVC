@@ -510,5 +510,23 @@
         <member name="M:WebApiSergio.Controllers.ClientesController.DeleteAsync(System.Int32)">
             DELETE: api/Clientes/5
         </member>
+        <member name="T:WebApiSergio.Models.Queries">
+            <summary>
+            Services
+            </summary>
+        </member>
+        <member name="M:WebApiSergio.Models.Queries.ListaClientesAsync(System.Nullable{System.Int32})">
+            GET e GET(id) (Select)
+        </member>
+        <member name="M:WebApiSergio.Models.Queries.InserirClienteAsync(System.String,System.String)">
+            Método completamente asyncronous desde o Open até o Execute. 
+            Post (Insert)
+        </member>
+        <member name="M:WebApiSergio.Models.Queries.AtualizarClienteAsync(System.Int32,System.String,System.String)">
+            PUT (Update)
+        </member>
+        <member name="M:WebApiSergio.Models.Queries.DeletarClienteAsync(System.Int32)">
+            Delete (Delete)
+        </member>
     </members>
 </doc>
