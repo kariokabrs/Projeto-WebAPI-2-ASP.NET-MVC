@@ -18,6 +18,7 @@ namespace WebApiSergio.Models
         ///GET e GET(id) (Select)
         public async Task<ObservableCollection<Clientes>> ListaClientesAsync(int? Id)
         {
+          
             using (MySqlConnection MyConexaoDb = new MySqlConnection(ConnectionStringDb))
             {
                 using (MySqlCommand Cmd = new MySqlCommand("sp_ReadCliente", MyConexaoDb))
@@ -42,8 +43,8 @@ namespace WebApiSergio.Models
                                 {
                                     Id = dr.GetInt32(0),
                                     Nome = dr.GetString(1),
-                                    Cpf = dr.GetString(2)
-                                });
+                                   
+                            });
                             }
                         }
 

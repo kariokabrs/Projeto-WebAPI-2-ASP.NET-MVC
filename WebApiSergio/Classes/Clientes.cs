@@ -1,4 +1,5 @@
-﻿using System.Runtime.Serialization;
+﻿using System.Collections.Generic;
+using System.Runtime.Serialization;
 
 namespace WebApiSergio
 {
@@ -11,25 +12,17 @@ namespace WebApiSergio
     public class Clientes
     {
         //Se especificar um nome no DataMember o nome da coluna da propriedade não será mostrado e sim o nome que especifiquei no DataMember. 
-        [DataMember(Name ="ClienteId")]
+        //[DataMember(Name = "ClienteId")]
         public int Id { get; set; }
-        [DataMember]
+        //[DataMember]
         public string Nome { get; set; }
-        [DataMember]
-        public _Cpf cpf { get; set; }
-
-        //Pode-se também o usar apenas o atributo [JsonIgnore] para omitir a propriedade
-        //[JsonIgnore]
-        /// <summary>
-        /// Monstra o CPF do cliente
-        /// </summary>
-        
-        public class _Cpf
+        public List<_Cpf> Cpf { get; set; }
+      
+        public class _Cpf 
         {
-            /// <summary>
-            /// teste do CPF
-            /// </summary>
             public string Cpf { get; set; }
         }
+
     }
 }
+

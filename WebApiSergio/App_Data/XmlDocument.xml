@@ -4,6 +4,17 @@
         <name>WebApiSergio</name>
     </assembly>
     <members>
+        <member name="T:WebApiSergio.WebApiConfig">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:WebApiSergio.WebApiConfig.Register(System.Web.Http.HttpConfiguration)">
+            <summary>
+            
+            </summary>
+            <param name="config"></param>
+        </member>
         <member name="T:WebApiSergio.Areas.HelpPage.ApiDescriptionExtensions">
             <summary>
             Página HELP da WebAPI
@@ -485,6 +496,12 @@
             Initializes a new instance of the <see cref="T:WebApiSergio.Areas.HelpPage.XmlDocumentationProvider"/> class.
             </summary>
             <param name="documentPath">The physical path to XML document.</param>
+        </member>
+        <member name="T:WebApiSergio.Cpf">
+            <summary>
+            Classe Principal
+            </summary>
+            
         </member>
         <member name="T:WebApiSergio.Controllers.ClientesController">
             <summary>

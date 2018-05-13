@@ -80,7 +80,7 @@ namespace WebApiSergio.Controllers
         {
             try
             {
-                await query.InserirClienteAsync(value.Nome, value.Cpf);
+                await query.InserirClienteAsync(value.Nome, value.cpf);
                 //Task.Run(() => query.InserirClienteAsync(value.Nome, value.Cpf));
             }
 
@@ -96,7 +96,7 @@ namespace WebApiSergio.Controllers
         {
             try
             {
-                await query.AtualizarClienteAsync(id, value.Nome, value.Cpf);
+                await query.AtualizarClienteAsync(id, value.Nome, value.cpf);
             }
             catch (Exception)
             {
