@@ -5,6 +5,7 @@ using System.Web;
 using System.Web.Http;
 using System.Web.Mvc;
 using System.Web.Routing;
+using WebApiSergio.Security;
 
 namespace WebApiSergio
 {
@@ -14,6 +15,10 @@ namespace WebApiSergio
         {
             GlobalConfiguration.Configure(WebApiConfig.Register);
             AreaRegistration.RegisterAllAreas();
+
+            GlobalConfiguration.Configuration.MessageHandlers.Add(new APIKeySecurity());
+            //GlobalConfiguration.Configuration.MessageHandlers.Add(new AuthHandler());
+
         }
     }
 }

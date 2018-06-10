@@ -17,7 +17,8 @@
     <AssemblyName>WebApiSergio</AssemblyName>
     <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
     <UseIISExpress>true</UseIISExpress>
-    <IISExpressSSLPort />
+    <IISExpressSSLPort>
+    </IISExpressSSLPort>
     <IISExpressAnonymousAuthentication />
     <IISExpressWindowsAuthentication />
     <IISExpressUseClassicPipelineMode />
@@ -205,6 +206,10 @@
     <Compile Include="Interfaces\Interface1.cs" />
     <Compile Include="Models\Queries.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Security\APIKeySecurity.cs" />
+    <Compile Include="Security\AutenticacaoFilter.cs" />
+    <Compile Include="Security\AuthHandler.cs" />
+    <Compile Include="Security\TestAPIPrincipal.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />

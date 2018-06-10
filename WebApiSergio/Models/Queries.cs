@@ -43,7 +43,7 @@ namespace WebApiSergio.Models
                                 {
                                     Id = dr.GetInt32(0),
                                     Nome = dr.GetString(1),
-                                   
+                                   Cpf = dr.GetString(2)
                             });
                             }
                         }

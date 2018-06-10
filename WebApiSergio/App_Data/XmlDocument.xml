@@ -497,11 +497,10 @@
             </summary>
             <param name="documentPath">The physical path to XML document.</param>
         </member>
-        <member name="T:WebApiSergio.Cpf">
+        <member name="T:WebApiSergio.Clientes">
             <summary>
             Classe Principal
             </summary>
-            
         </member>
         <member name="T:WebApiSergio.Controllers.ClientesController">
             <summary>

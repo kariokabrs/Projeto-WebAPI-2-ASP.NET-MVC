@@ -12,16 +12,14 @@ namespace WebApiSergio
     public class Clientes
     {
         //Se especificar um nome no DataMember o nome da coluna da propriedade não será mostrado e sim o nome que especifiquei no DataMember. 
-        //[DataMember(Name = "ClienteId")]
+        [DataMember(Name = "ClienteId")]
         public int Id { get; set; }
-        //[DataMember]
+        [DataMember]
         public string Nome { get; set; }
-        public List<_Cpf> Cpf { get; set; }
+        [DataMember]
+        public string Cpf { get; set; }
       
-        public class _Cpf 
-        {
-            public string Cpf { get; set; }
-        }
+       
 
     }
 }
