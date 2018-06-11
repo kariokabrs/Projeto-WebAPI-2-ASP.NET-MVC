@@ -10,7 +10,7 @@ using System.Web.Http.Description;
 using System.Web.Http.Filters;
 using WebApiSergio.Classes;
 using WebApiSergio.Models;
-
+using WebApiSergio.Security;
 
 namespace WebApiSergio.Controllers
 {
@@ -18,7 +18,8 @@ namespace WebApiSergio.Controllers
     /// WebAPIsergio para CRUD da tabela Clientes do MySQL.
     /// </summary>
  
-    [Authorize] // Require authenticated requests using AuthHandler Delegation. 
+    //[Authorize] // Require authenticated requests using AuthHandler Delegation. 
+    [AutenticacaoFilter]
     public class ClientesController : ApiController
     {
         Queries query = new Queries();
